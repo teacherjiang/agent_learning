@@ -31,6 +31,7 @@
 - 工具调用前做参数校验，异常可重试
 - 工具结果写入 state/scratchpad 后再次调用模型
 - 显式 stop condition 防止无限循环
+- 运行结果包含 `trace`（steps/tool_history/scratchpad），便于复盘
 
 ## 如何运行
 

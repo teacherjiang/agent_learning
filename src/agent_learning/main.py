@@ -20,6 +20,7 @@ def main() -> None:
                 "final_answer": result.final_answer,
                 "end_reason": result.end_reason,
                 "loops": result.loops,
+                "trace": result.trace,
             },
             ensure_ascii=False,
             indent=2,
