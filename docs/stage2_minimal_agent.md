@@ -31,9 +31,13 @@
 
 2. 工具 schema
 - `get_weather(city: str)` 的 schema 显式定义在工具注册表中。
+  - 位置：`src/agent_learning/tools.py` 的 `parameters_schema`
+  - 作用：明确模型与工具之间的参数契约，避免脆弱字符串解析
 
 3. 状态推进而非“失忆”
 - `AgentState` 保存轮次、步骤、工具调用记录、工具结果与最终回答。
+  - `tool_history`：工具调用与结果历史
+  - `scratchpad`：可扩展的工作记忆区（当前示例里存 `last_tool_result`）
 
 4. 停止条件
 - 得到最终答案则停止
@@ -45,6 +49,7 @@
 - 参数校验失败
 - 工具执行异常
 - 限制最大重试次数，防止无限重试
+  - 注意：未知工具或校验失败会先记录到 state，再进入下一轮决策，不是进程崩溃
 
 6. 日志
 - 每轮记录 action 类型

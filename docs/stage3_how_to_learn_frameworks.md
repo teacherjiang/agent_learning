@@ -97,3 +97,17 @@
 下一步推荐：
 - 先把 OpenAI Agents SDK 跑通真实 key
 - 然后开始 Stage 4（workflow/orchestration）
+
+## 常见易混点（基于本仓库实战）
+
+1. `tool schema` 不在 `schemas.py`
+- 在本仓库里，工具参数 schema 在 `src/agent_learning/tools.py`（`parameters_schema`）。
+- `schemas.py` 主要定义模型动作和运行结果的数据结构。
+
+2. `scratchpad` 不只是“中间结果”
+- 概念上它是可被后续轮次读取的工作记忆区。
+- 当前示例只写了 `last_tool_result`，是最小实现，不是能力上限。
+
+3. “未知工具是否会直接崩溃？”
+- 不会。主循环会先按未知工具分支记录失败，再进入下一轮决策。
+- 即便异常抛出也在主循环 `try/except` 中被接住并写入 state。
