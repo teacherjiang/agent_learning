@@ -47,6 +47,17 @@ def get_llm_response(state: AgentState, tools: List[ToolDefinition]) -> ModelOut
 
 
 def siliconflow_llm(state: AgentState, tools: List[ToolDefinition]) -> ModelOutput:
+    # Guardrail: some models may keep emitting the same tool call repeatedly.
+    # If we already have a successful tool result, close the loop with final answer.
+    if state.tool_history:
+        last_tool = state.tool_history[-1]
+        if last_tool.success:
+            city = str(last_tool.arguments.get("city", "Unknown"))
+            return ModelOutput(
+                action="final_answer",
+                final_answer=f"The weather in {city} is {last_tool.result}.",
+            )
+
     api_key = os.getenv("SILICONFLOW_API_KEY", "").strip()
     if not api_key:
         return ModelOutput(

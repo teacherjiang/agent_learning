@@ -1,6 +1,7 @@
 from typing import Any, Dict
 
 from agent_learning.llm import get_llm_response
+from agent_learning.schemas import ToolExecutionRecord
 from agent_learning.state import AgentState
 from agent_learning.tools import get_tools
 
@@ -69,3 +70,23 @@ def test_siliconflow_tool_call_parsing(monkeypatch) -> None:
     assert output.tool_call is not None
     assert output.tool_call.tool_name == "get_weather"
     assert output.tool_call.arguments["city"] == "Tokyo"
+
+
+def test_siliconflow_short_circuit_after_successful_tool(monkeypatch) -> None:
+    monkeypatch.setenv("AGENT_LLM_PROVIDER", "siliconflow")
+    monkeypatch.setenv("SILICONFLOW_API_KEY", "dummy-key")
+
+    state = AgentState(user_input="What's the weather in Tokyo?")
+    state.tool_history.append(
+        ToolExecutionRecord(
+            tool_name="get_weather",
+            arguments={"city": "Tokyo"},
+            success=True,
+            result="Sunny, 22C",
+        )
+    )
+
+    output = get_llm_response(state, get_tools())
+    assert output.action == "final_answer"
+    assert output.final_answer is not None
+    assert "Sunny" in output.final_answer
