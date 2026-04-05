@@ -101,4 +101,6 @@ PYTHONPATH=src python3 -m stage3.run_comparison openai_agents "What's the weathe
 
 说明：
 - `baseline` 当前可运行（复用 Stage 2）
-- `langchain/openai_agents` 当前为占位实现，下一步会逐个替换为真实对比版本
+- `langchain` 当前可运行（无 API key 依赖）
+- `openai_agents` 已接入 OpenAI Agents SDK；需先设置 `OPENAI_API_KEY`
+- 学习路线见：`docs/stage3_how_to_learn_frameworks.md`
