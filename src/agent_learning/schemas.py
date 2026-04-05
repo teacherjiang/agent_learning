@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Dict, Literal, Optional
 
 ActionType = Literal["final_answer", "tool_call"]
@@ -31,3 +31,4 @@ class AgentResult:
     final_answer: str
     end_reason: str
     loops: int
+    trace: Dict[str, Any] = field(default_factory=dict)
