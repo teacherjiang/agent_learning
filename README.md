@@ -48,6 +48,17 @@ PYTHONPATH=src python3 -m agent_learning.main "Hello"
 PYTHONPATH=src python3 -m agent_learning.main "What's the weather in Mars?"
 ```
 
+可选：切换为 SiliconFlow API（默认仍是 mock）
+
+```bash
+export AGENT_LLM_PROVIDER=siliconflow
+export SILICONFLOW_API_KEY="<your_key>"
+# 可选覆盖，默认是 https://api.siliconflow.cn/v1
+export SILICONFLOW_BASE_URL="https://api.siliconflow.cn/v1"
+export SILICONFLOW_MODEL="Qwen/Qwen2.5-7B-Instruct"
+PYTHONPATH=src python3 -m agent_learning.main "What's the weather in Tokyo?"
+```
+
 3. 运行测试
 
 ```bash

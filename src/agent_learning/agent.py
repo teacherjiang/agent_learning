@@ -1,4 +1,4 @@
-from .llm import mock_llm
+from .llm import get_llm_response
 from .logger import get_logger
 from .schemas import AgentResult, ToolExecutionRecord
 from .state import AgentState
@@ -40,7 +40,7 @@ class MinimalAgent:
             state.loop_count += 1
             self.logger.info("Loop %s", state.loop_count)
 
-            model_output = mock_llm(state)
+            model_output = get_llm_response(state, list(self.tool_map.values()))
             state.add_step(f"loop_{state.loop_count}_action={model_output.action}")
             self.logger.info("Model action: %s", model_output.action)
 
