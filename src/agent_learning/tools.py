@@ -15,6 +15,7 @@ def get_weather(city: str) -> str:
         "tokyo": "Sunny, 22C",
         "beijing": "Cloudy, 18C",
         "shanghai": "Rainy, 20C",
+        "shenzhen": "Humid, 26C",
     }
     return weather_map.get(city.lower(), "Unknown weather")
 

@@ -1,1 +1,2 @@
 pytest>=8.0.0
+langchain>=0.2.0
