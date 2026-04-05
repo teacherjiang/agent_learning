@@ -12,6 +12,7 @@
 ## 当前进度
 
 - 已完成：**Stage 2 - Hand-Written Minimal Agent**
+- 已就绪：**Stage 3 - Framework Comparison Skeleton**
 
 ## Stage 2 学什么
 
@@ -88,3 +89,16 @@ PYTHONPATH=src pytest -q
 - `tools.py`：扩展更多工具与 schema
 - `state.py`：增加更完整的会话记忆和任务状态
 - `agent.py`：从单 Agent loop 扩展到 workflow / orchestration / multi-agent
+- `src/stage3`：对比框架版本与 baseline 的统一入口
+
+## Stage 3 快速开始
+
+```bash
+PYTHONPATH=src python3 -m stage3.run_comparison baseline "What's the weather in Tokyo?"
+PYTHONPATH=src python3 -m stage3.run_comparison langchain "What's the weather in Tokyo?"
+PYTHONPATH=src python3 -m stage3.run_comparison openai_agents "What's the weather in Tokyo?"
+```
+
+说明：
+- `baseline` 当前可运行（复用 Stage 2）
+- `langchain/openai_agents` 当前为占位实现，下一步会逐个替换为真实对比版本

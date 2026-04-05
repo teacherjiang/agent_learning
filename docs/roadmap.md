@@ -10,3 +10,7 @@
 说明：
 - 本仓库从 Stage 2 起步，每一阶段都在同一代码库累积演进。
 - 每阶段都保持“可运行 + 可复盘 + 可对比”。
+
+当前状态：
+- Stage 2 已完成并稳定可运行
+- Stage 3 已建立骨架（baseline adapter + comparison runner + comparison matrix）
