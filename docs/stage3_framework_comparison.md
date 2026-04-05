@@ -34,7 +34,9 @@ src/stage3/
 当前状态：
 - baseline 已可运行
 - LangChain 版本已可运行（使用 `@tool + RunnableLambda`，无真实 LLM API）
-- OpenAI Agents SDK 版本仍是占位（下一步实现）
+- OpenAI Agents SDK 版本已接入（使用 `Agent + Runner + function_tool`）
+  - 需要 `OPENAI_API_KEY`
+  - 未配置 key 时会返回清晰的学习提示，不会报崩
 
 ## 对比维度（必须记录）
 
@@ -49,3 +51,7 @@ src/stage3/
 - 至少 1 个框架版本可以跑通同任务
 - 产出对比表（见 `docs/templates/stage3_comparison_matrix.md`）
 - 形成结论：框架帮你封装了什么，代价是什么
+
+## 配套学习文档
+
+- `docs/stage3_how_to_learn_frameworks.md`

@@ -4,7 +4,7 @@
 |---|---|---:|---|---|---|---|---|
 | Stage2 Baseline | yes | - | - | - | - | - | hand-written |
 | LangChain | yes | TBD | TBD | TBD | TBD | TBD | `@tool + RunnableLambda` minimal variant |
-| OpenAI Agents SDK | TBD | TBD | TBD | TBD | TBD | TBD | |
+| OpenAI Agents SDK | partial | TBD | TBD | TBD | TBD | TBD | runnable with API key, graceful fallback without key |
 
 ## Key Findings
 
