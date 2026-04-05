@@ -70,3 +70,13 @@
 3. 引入更完整的 tracing 与评估
 4. 从单 loop 发展到 workflow / orchestration
 5. 再进入多 Agent 与协议层实践
+
+## 当前仓库的升级实践（已接入可选真实 LLM）
+
+- `llm.py` 里新增 `get_llm_response()`：
+  - 默认 `AGENT_LLM_PROVIDER=mock`
+  - 可选 `AGENT_LLM_PROVIDER=siliconflow`
+- SiliconFlow 模式下会：
+  - 读取 `SILICONFLOW_API_KEY`、`SILICONFLOW_BASE_URL`、`SILICONFLOW_MODEL`
+  - 把工具 schema 作为 `tools` 传给 API
+  - 解析 `tool_calls` 或最终文本回答，映射回 `ModelOutput`
